@@ -14,9 +14,12 @@ router.post('/', async function (req, res) {
   
   let model = await toxicity.load(0.9);
   let sentences = ['you are stupid'];
-  sentences = req.body || sentences;
+
+  if (req.body?.sentences) {
+    sentences = req.body.sentences;
+  }
   let predictions = await model.classify(sentences);
-  res.send({sentences, predictions});
+  res.send({sentences, predictions });
 });
 
 module.exports = router;
