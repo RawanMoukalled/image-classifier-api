@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+  <form name="myForm" method="post" enctype="multipart/form-data">
+    <button type='submit' id="submit-btn">Submit</button>
+  </form>
+  <div id="result"></div>
+  <script>
+    const button = document.querySelector('#submit-btn')
+    button.addEventListener('click', async (e) => {
+      e.preventDefault();
+      const URL = 'https://localhost:3000/'
+      // const image = document.querySelector('#image-upload');
+      // const resultDiv = document.querySelector('#result')
+      const formData = new FormData();
+      formData.append("sampleKey", "sampleValue");
+      // formData.append("file", image.files[0]);
+      const response = await fetch(URL, {
+        method: 'POST',
+        body: formData
+      });
+      // const result = await response.json();
+      const result = await response;
+      // resultDiv.innerHTML = JSON.stringify(result.predictions);
+      // console.log(result);
+    });
+  </script>
+</body>
+</html>
